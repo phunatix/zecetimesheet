@@ -1,0 +1,42 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "hcm.mytimesheet.zece_timesheet_extension",
+		"type": "application",
+		"applicationVersion": {
+			"version": "1.0"
+		},
+		"title": "{{title}}"
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			""
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"dependencies": {
+			"minUI5Version": "1.28.5"
+		},
+		"extends": {
+			"component": "hcm.mytimesheet",
+			"extensions": {}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	}
+}

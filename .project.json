@@ -1,0 +1,89 @@
+{
+  "projectType": [
+    "com.watt.commonbuilder.sapui5clientbuild",
+    "sap.watt.uitools.ide.fiori"
+  ],
+  "generation": [
+    {
+      "templateId": "fioriexttemplate.extensionProject",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Tue, 13 Jun 2017 15:38:02 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.hidecontrolcomponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 14 Jun 2017 14:42:02 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.extendcontrollerhook",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Sat, 17 Jun 2017 07:53:12 GMT"
+    }
+  ],
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr,de",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  },
+  "mockpreview": {
+    "mockUri": "/sap/opu/odata/sap/HCM_TIMESHEET_MAN_SRV/",
+    "metadataFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "basevalidator": {
+    "services": {
+      "js": "fioriJsValidator",
+      "xml": "fioriXmlAnalysis"
+    }
+  },
+  "codeCheckingTriggers": {
+    "notifyBeforePush": true,
+    "notifyBeforePushLevel": "Error",
+    "blockPush": false,
+    "blockPushLevel": "Error"
+  },
+  "extensibility": {
+    "controllers": {
+      "Main": "/Main.controller.js",
+      "S3": "/view/S3.controller.js",
+      "S31": "/view/S31.controller.js"
+    },
+    "views": {
+      "Main": "/Main.view.xml",
+      "S3": "/view/S3.view.xml",
+      "S31": "/view/S31.view.xml"
+    },
+    "fragments": {},
+    "type": "hcp",
+    "shouldLinkComponentToManifest": false,
+    "component": "/Component.js",
+    "configuration": "/Configuration.js",
+    "manifest": "/manifest.json",
+    "versionJsonPath": "/version.json",
+    "minUI5Version": "1.28.5",
+    "system": {
+      "account": "a55058c97",
+      "application": "hcmmytimesheet",
+      "type": "subscription",
+      "providerAccount": "sapfioriapps",
+      "providerName": "hcmmytimesheet"
+    },
+    "parentResourceRootUrl": "/ext/parent/hcmmytimesheet/",
+    "namespace": "hcm.mytimesheet",
+    "resourceBundle": ""
+  },
+  "build": {
+    "targetFolder": "dist",
+    "sourceFolder": "webapp",
+    "buildRequired": true
+  },
+  "hcpdeploy": {
+    "account": "a55058c97",
+    "name": "zecetimesheet",
+    "lastVersionWeTriedToDeploy": "1.0.0"
+  }
+}

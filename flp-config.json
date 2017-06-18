@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "hcm.mytimesheet.zecetimesheet.zecetimesheet",
+        "description": "ECE Timesheet (Extension)",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/webapp",
+        "appUrl": "#zecetimesheet-Display",
+        "navigationComponentName": "hcm.mytimesheet.zecetimesheet",
+        "intentSemanticObject": "zecetimesheet",
+        "intentAction": "Display",
+        "html5ApplicationName": "zecetimesheet",
+        "HCPParentApplicationName": "hcmmytimesheet"
+    },
+    "assignment": {
+        "groups": [
+            "ece_employee"
+        ],
+        "contentPackages": [
+            "hr_services_employee"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "My Timesheet",
+        "subtitle": "ECE Version",
+        "searchKeywords": "My Timesheet,extended,ece",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}
