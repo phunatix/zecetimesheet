@@ -1,0 +1,277 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData"
+    xmlns:ux="http://www.sap.com/Protocols/OData4SAP/UX"
+    xmlns:gp="http://www.sap.com/Protocols/SAPData/GenericPlayer" Version="1.0">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="HCM_TIMESHEET_MAN_SRV" sap:schema-version="1" xml:lang="en">
+            <EntityType Name="TimeData" sap:content-version="1" sap:label="Time Data">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="RecordNumber"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Employee Number"/>
+                <Property Name="RecordNumber" Type="Edm.String" Nullable="false" sap:label="Record number of Time Entry"/>
+                <Property Name="FieldName" Type="Edm.String" Nullable="true" MaxLength="30" m:FC_KeepInContent="true" m:FC_TargetPath="SyndicationTitle" sap:label="Time Entry Field Id"/>
+                <Property Name="FieldText" Type="Edm.String" Nullable="true" sap:label="Time Entry Field Text"/>
+                <Property Name="FieldValue" Type="Edm.String" Nullable="true" sap:label="Time Entry Field Value Id"/>
+                <Property Name="FieldValueText" Type="Edm.String" Nullable="true" sap:label="Time Entry Field Value Text"/>
+                <Property Name="Level" Type="Edm.Int16" Nullable="true" sap:label="Level of Time Entry Field"/>
+                <Property Name="StartDate" Type="Edm.String" Nullable="true" sap:label="Start Date of a month (Input)"/>
+                <Property Name="EndDate" Type="Edm.String" Nullable="true" sap:label="End Date of a month (Input)"/>
+            </EntityType>
+            <EntityType Name="TimeEntry" sap:content-version="1" sap:label="Time Entry Data">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="Counter"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Employee Number"/>
+                <Property Name="ProfileId" Type="Edm.String" Nullable="true" sap:label="Data Entry Profile Id"/>
+                <Property Name="Counter" Type="Edm.String" Nullable="false" m:FC_KeepInContent="true" m:FC_TargetPath="SyndicationTitle" sap:label="Counter of Time Entry Record"/>
+                <Property Name="Reason" Type="Edm.String" Nullable="true" sap:label="Rejection Reason"/>
+                <Property Name="Status" Type="Edm.String" Nullable="true" sap:label="Status of the time entry record"/>
+                <Property Name="RefCounter" Type="Edm.String" Nullable="true" sap:label="Reference Counter of time entry record"/>
+                <Property Name="CatsDocNo" Type="Edm.String" Nullable="true" sap:label="Document number of Time Entry Record"/>
+                <Property Name="TimeEntryOperation" Type="Edm.String" Nullable="true" MaxLength="1" sap:label="Time Entry Operation"/>
+                <Property Name="TimeEntryRelease" Type="Edm.String" Nullable="true" sap:label="Time Entry Release Data"/>
+                <Property Name="TimeEntryDataFields" Type="HCM_TIMESHEET_MAN_SRV.TimeEntryDataFields" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Summary" sap:content-version="1" sap:label="Home Page Information">
+                <Key>
+                    <PropertyRef Name="key"/>
+                </Key>
+                <Property Name="key" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:label="Key Field: Evaluation Date"/>
+                <Property Name="title" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:label="Title"/>
+                <Property Name="number" Type="Edm.Int32" Nullable="true" m:FC_KeepInContent="true" m:FC_TargetPath="SyndicationTitle" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:label="Number"/>
+                <Property Name="numberUnit" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:label="Number Unit"/>
+                <Property Name="info" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:label="Information"/>
+                <Property Name="infoStatus" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:label="Information Status"/>
+            </EntityType>
+            <EntityType Name="InitialInfo" sap:content-version="1" sap:label="Initial Information">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" m:FC_KeepInContent="true" m:FC_TargetPath="SyndicationTitle" sap:label="Employee Personal Number"/>
+                <Property Name="EmployeeName" Type="Edm.String" Nullable="true" sap:label="Employee Name"/>
+                <Property Name="AllowNonWorkingDays" Type="Edm.String" Nullable="true" sap:label="Allow non working days indicator"/>
+                <Property Name="ClockEntry" Type="Edm.String" Nullable="true" sap:label="Is Time Entered in clock time"/>
+                <Property Name="StartDate" Type="Edm.String" Nullable="true" sap:label="Start Date of a month (Input)"/>
+                <Property Name="EndDate" Type="Edm.String" Nullable="true" sap:label="End Date of a month (Input)"/>
+                <Property Name="WeekHours" Type="Edm.String" Nullable="true" sap:label="No. of missing hours in current week"/>
+                <Property Name="MonthHours" Type="Edm.String" Nullable="true" sap:label="No. of missing hours in current month"/>
+                <Property Name="AllHours" Type="Edm.String" Nullable="true" sap:label="No. of missing hours for all proposed days"/>
+                <Property Name="ReleaseDirectly" Type="Edm.String" Nullable="true" sap:label="Release entry directly to manager"/>
+                <Property Name="ReleaseFuture" Type="Edm.String" Nullable="true" sap:label="Release future dates"/>
+                <Property Name="FavoriteAvailable" Type="Edm.Boolean" Nullable="true" sap:label="Favorite Available"/>
+                <Property Name="ProfileID" Type="Edm.String" Nullable="true" sap:label="Data Entry Profile ID"/>
+                <Property Name="WithTargetHours" Type="Edm.Boolean" Nullable="true" sap:label="Target Hours Flag Status"/>
+            </EntityType>
+            <EntityType Name="WorkList" sap:content-version="1" sap:label="Employee Work List">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="DataEntryProfileId"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Employee Number"/>
+                <Property Name="DataEntryProfileId" Type="Edm.String" Nullable="false" sap:label="Data Entry Profile Id"/>
+                <Property Name="FieldName" Type="Edm.String" Nullable="true" MaxLength="30" m:FC_KeepInContent="true" m:FC_TargetPath="SyndicationTitle" sap:label="Time Entry Field Id"/>
+                <Property Name="FieldText" Type="Edm.String" Nullable="true" sap:label="Time Entry Field Text"/>
+                <Property Name="FieldValue" Type="Edm.String" Nullable="true" sap:label="Time Entry Field Value Id"/>
+                <Property Name="FieldValueText" Type="Edm.String" Nullable="true" sap:label="Time Entry Field Value Text"/>
+                <Property Name="RecordNumber" Type="Edm.Int16" Nullable="true" sap:label="Record Number of TIme Entry Field"/>
+                <Property Name="StartDate" Type="Edm.String" Nullable="true" sap:label="0"/>
+                <Property Name="EndDate" Type="Edm.String" Nullable="true"/>
+                <Property Name="Level" Type="Edm.Int16" Nullable="true" sap:label="Level of the Time Entry Field"/>
+            </EntityType>
+            <EntityType Name="ProfileField" sap:content-version="1" sap:label="Profile and its fields">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="ProfileId"/>
+                    <PropertyRef Name="FieldName"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:label="Personnel No."/>
+                <Property Name="ProfileId" Type="Edm.String" Nullable="false" m:FC_KeepInContent="true" m:FC_TargetPath="SyndicationTitle" sap:label="Data Entry Profile Id"/>
+                <Property Name="FieldName" Type="Edm.String" Nullable="false" sap:label="Time Entry Field Id"/>
+                <Property Name="FieldText" Type="Edm.String" Nullable="true" sap:label="Time Entry Field Text"/>
+                <Property Name="ReadOnly" Type="Edm.String" Nullable="true" sap:label="Read only field"/>
+            </EntityType>
+            <EntityType Name="ValueHelp" sap:content-version="1" sap:label="Value Help Info">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="FieldId"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:semantics="PERNR" sap:label="Personnel No."/>
+                <Property Name="FieldId" Type="Edm.String" Nullable="false" sap:semantics="FIELD_ID" sap:label="Time Entry Field Value Id"/>
+                <Property Name="FieldName" Type="Edm.String" Nullable="true" m:FC_KeepInContent="true" m:FC_TargetPath="SyndicationTitle" sap:semantics="FIELDNAME" sap:label="Time Entry Field Id"/>
+                <Property Name="FieldValue" Type="Edm.String" Nullable="true" sap:semantics="FIELD_VALUE" sap:label="Time Entry Field Value Text"/>
+                <Property Name="FieldRelated" Type="Edm.String" Nullable="true" sap:semantics="FIELD_RELATED" sap:label="Time Entry Field Related"/>
+                <Property Name="StartDate" Type="Edm.String" Nullable="true" sap:label="Start Date of a month (Input)"/>
+                <Property Name="EndDate" Type="Edm.String" Nullable="true" sap:label="End Date of a month (Input)"/>
+            </EntityType>
+            <EntityType Name="Favorite" sap:content-version="1" sap:label="Favorite">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="ObjType" Type="Edm.String" Nullable="true"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No."/>
+                <Property Name="Field_Id" Type="Edm.String" Nullable="true"/>
+                <Property Name="Field_Value" Type="Edm.String" Nullable="true"/>
+                <Property Name="Field_Text" Type="Edm.String" Nullable="true"/>
+                <Property Name="Name" Type="Edm.String" Nullable="true"/>
+                <Property Name="FavoriteOperation" Type="Edm.String" Nullable="true" MaxLength="4"/>
+                <Property Name="FavoriteDataFields" Type="HCM_TIMESHEET_MAN_SRV.TimeEntryDataFields" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="WorkCalendar" sap:content-version="1" sap:label="Work Calendar">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="Date"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Employee Number"/>
+                <Property Name="Date" Type="Edm.String" Nullable="false" m:FC_KeepInContent="true" m:FC_TargetPath="SyndicationTitle" sap:label="Day in a calendar"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" sap:label="Time Entry status for the day"/>
+                <Property Name="TargetHours" Type="Edm.String" Nullable="false" sap:label="Time Entry target hours for the day"/>
+                <Property Name="WorkingDay" Type="Edm.String" Nullable="false" sap:label="Is the day working day or a non working day"/>
+                <Property Name="EndDate" Type="Edm.String" Nullable="true" sap:label="End Date of Month (Input)"/>
+                <Property Name="StartDate" Type="Edm.String" Nullable="true" sap:label="Start Date of month (Input)"/>
+                <Property Name="FirstDayOfWeek" Type="Edm.String" Nullable="false" sap:label="First day of the week"/>
+            </EntityType>
+            <EntityType Name="ConcurrentEmployment" sap:content-version="1" sap:label="Concurrent Employemnt">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:label="Personnel No."/>
+                <Property Name="AssignmentText" Type="Edm.String" Nullable="true" MaxLength="255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:label="Text"/>
+            </EntityType>
+            <ComplexType Name="TimeEntryDataFields" sap:label="CATS table fields">
+                <Property Name="AWART" Type="Edm.String" MaxLength="4" sap:label="Att./abs. type"/>
+                <Property Name="LSTAR" Type="Edm.String" MaxLength="6" sap:label="Activity Type"/>
+                <Property Name="ALLDF" Type="Edm.String" MaxLength="1" sap:label="Full-day"/>
+                <Property Name="PRAKN" Type="Edm.String" MaxLength="2" sap:label="Premium no."/>
+                <Property Name="PRAKZ" Type="Edm.String" MaxLength="4"/>
+                <Property Name="BEMOT" Type="Edm.String" MaxLength="2" sap:label="AcctIndicator"/>
+                <Property Name="CATSHOURS" Type="Edm.Decimal" Precision="5" Scale="5" sap:unit="MEINH" sap:label="Hours"/>
+                <Property Name="PERNR" Type="Edm.String" MaxLength="8" sap:label="Personal Number"/>
+                <Property Name="KOKRS" Type="Edm.String" MaxLength="4" sap:label="CO Area"/>
+                <Property Name="CPR_EXTID" Type="Edm.String" MaxLength="24" sap:label="Project"/>
+                <Property Name="CPR_GUID" Type="Edm.String" MaxLength="32" sap:label="Project"/>
+                <Property Name="CPR_OBJGEXTID" Type="Edm.String" MaxLength="24" sap:label="Subobject"/>
+                <Property Name="CPR_OBJGUID" Type="Edm.String" MaxLength="32" sap:label="Subobject"/>
+                <Property Name="CPR_OBJTYPE" Type="Edm.String" MaxLength="3" sap:label="Object Type"/>
+                <Property Name="WAERS" Type="Edm.String" MaxLength="5" sap:semantics="currency-code" sap:label="Currency"/>
+                <Property Name="ENDUZ" Type="Edm.String" MaxLength="6" sap:label="Time"/>
+                <Property Name="EXTAPPLICATION" Type="Edm.String" MaxLength="5" sap:label="Ext.appl."/>
+                <Property Name="EXTDOCUMENTNO" Type="Edm.String" MaxLength="20" sap:label="Document no."/>
+                <Property Name="AUFKZ" Type="Edm.String" MaxLength="1" sap:label="Extra pay ID"/>
+                <Property Name="EXTSYSTEM" Type="Edm.String" MaxLength="10" sap:label="Logical system"/>
+                <Property Name="PEDD" Type="Edm.String"/>
+                <Property Name="AUERU" Type="Edm.String" MaxLength="1" sap:label="Final Confirmtn"/>
+                <Property Name="FUNC_AREA" Type="Edm.String" MaxLength="16" sap:label="Functional Area"/>
+                <Property Name="FUND" Type="Edm.String" MaxLength="10" sap:label="Fund"/>
+                <Property Name="GRANT_NBR" Type="Edm.String" MaxLength="20" sap:label="Grant"/>
+                <Property Name="LONGTEXT" Type="Edm.String" MaxLength="1" sap:label="Long text"/>
+                <Property Name="RNPLNR" Type="Edm.String" MaxLength="12" sap:label="Network"/>
+                <Property Name="VERSL" Type="Edm.String" MaxLength="1" sap:label="OT comp. type"/>
+                <Property Name="ERUZU" Type="Edm.String" MaxLength="1" sap:label="Part. con."/>
+                <Property Name="TRFGR" Type="Edm.String" MaxLength="8" sap:label="Pay Scale Group"/>
+                <Property Name="TRFST" Type="Edm.String" MaxLength="2" sap:label="PS level"/>
+                <Property Name="WERKS" Type="Edm.String" MaxLength="4" sap:label="Plant"/>
+                <Property Name="SEBELP" Type="Edm.String" MaxLength="5"/>
+                <Property Name="SEBELN" Type="Edm.String" MaxLength="10" sap:label="Sending order"/>
+                <Property Name="PLANS" Type="Edm.String"/>
+                <Property Name="VTKEN" Type="Edm.String" MaxLength="1" sap:label="Previous day"/>
+                <Property Name="CATSQUANTITY" Type="Edm.Decimal" Precision="15" Scale="14" sap:unit="UNIT" sap:label="Number (unit)"/>
+                <Property Name="RKOSTL" Type="Edm.String" MaxLength="10" sap:label="Rec. CCtr"/>
+                <Property Name="RAUFNR" Type="Edm.String" MaxLength="12" sap:label="Rec. order"/>
+                <Property Name="RPRZNR" Type="Edm.String" MaxLength="12" sap:label="Rec.bus.process"/>
+                <Property Name="RKSTR" Type="Edm.String" MaxLength="12" sap:label="Cost object"/>
+                <Property Name="RKDPOS" Type="Edm.String" MaxLength="6"/>
+                <Property Name="RKDAUF" Type="Edm.String" MaxLength="10" sap:label="Rec. sales ord."/>
+                <Property Name="OFMNW" Type="Edm.Decimal" Precision="7" Scale="7" sap:unit="MEINH" sap:label="Remaining work"/>
+                <Property Name="SPRZNR" Type="Edm.String" MaxLength="12" sap:label="Send.Bus.Proc."/>
+                <Property Name="SKOSTL" Type="Edm.String" MaxLength="10" sap:label="Send. CCtr"/>
+                <Property Name="S_FUNC_AREA" Type="Edm.String" MaxLength="16" sap:label="Sender Fnc.Area"/>
+                <Property Name="S_FUND" Type="Edm.String" MaxLength="10" sap:label="Sender Fund"/>
+                <Property Name="S_GRANT_NBR" Type="Edm.String" MaxLength="20" sap:label="Sender Grant"/>
+                <Property Name="LSTNR" Type="Edm.String" MaxLength="18" sap:label="Activity number"/>
+                <Property Name="LTXA1" Type="Edm.String" MaxLength="40" sap:label="Opr. short text"/>
+                <Property Name="SPLIT" Type="Edm.Byte" sap:label="Split number"/>
+                <Property Name="BEGUZ" Type="Edm.String" MaxLength="6" sap:label="Time"/>
+                <Property Name="STATKEYFIG" Type="Edm.String" MaxLength="6" sap:label="Stat. key fig."/>
+                <Property Name="TCURR" Type="Edm.String" MaxLength="5" sap:semantics="currency-code" sap:label="Trans. Currency"/>
+                <Property Name="REINR" Type="Edm.String" MaxLength="10"/>
+                <Property Name="MEINH" Type="Edm.String" MaxLength="3" sap:semantics="unit-of-measure" sap:label="Unit of Measure"/>
+                <Property Name="UNIT" Type="Edm.String" MaxLength="3" sap:semantics="unit-of-measure" sap:label="Int. Meas. Unit"/>
+                <Property Name="LGART" Type="Edm.String" MaxLength="4" sap:label="Wage Type"/>
+                <Property Name="WORKDATE" Type="Edm.DateTime" Precision="0" sap:label="Date"/>
+                <Property Name="WTART" Type="Edm.String" MaxLength="4" sap:label="Tax area"/>
+                <Property Name="CATSAMOUNT" Type="Edm.Decimal" Precision="13" Scale="13" sap:unit="WAERS" sap:label="Amount"/>
+                <Property Name="PRICE" Type="Edm.Decimal" Precision="11" Scale="11" sap:unit="TCURR" sap:label="Price"/>
+                <Property Name="RPROJ" Type="Edm.String" MaxLength="24" sap:label="WBS element"/>
+                <Property Name="ARBPL" Type="Edm.String" MaxLength="8" sap:label="Work center"/>
+                <Property Name="TASKTYPE" Type="Edm.String" MaxLength="4" sap:label="Task Type"/>
+                <Property Name="TASKLEVEL" Type="Edm.String" MaxLength="8" sap:label="Task level"/>
+                <Property Name="TASKCOMPONENT" Type="Edm.String" MaxLength="8" sap:label="Task component"/>
+                <Property Name="VORNR" Type="Edm.String" MaxLength="4" sap:label="Activity"/>
+                <Property Name="UVORN" Type="Edm.String" MaxLength="4" sap:label="Suboperation"/>
+                <Property Name="KAPAR" Type="Edm.String" MaxLength="3" sap:label="Capacity cat."/>
+                <Property Name="BWGRL" Type="Edm.Decimal" Precision="13" Scale="13" sap:unit="WAERS" sap:label="Valuation basis"/>
+                <Property Name="LONGTEXT_DATA" Type="Edm.String"/>
+                <Property Name="WORKITEMID" Type="Edm.String" MaxLength="12"/>
+                <Property Name="POSID" Type="Edm.String" MaxLength="24" sap:label="WBS element"/>
+                <Property Name="RAUFPL" Type="Edm.String"/>
+                <Property Name="RAPLZL" Type="Edm.String"/>
+                <Property Name="PAOBJNR" Type="Edm.String"/>
+                <Property Name="BUDGET_PD" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SBUDGET_PD" Type="Edm.String" MaxLength="10"/>
+                <Property Name="KAPID" Type="Edm.String"/>
+                <Property Name="WABLNR" Type="Edm.String" MaxLength="10" sap:label="Material Doc."/>
+                <Property Name="OTYPE" Type="Edm.String" MaxLength="2" sap:label="Object type"/>
+                <Property Name="ARBID" Type="Edm.String"/>
+                <Property Name="AUTYP" Type="Edm.String"/>
+                <Property Name="HRCOSTASG" Type="Edm.String" MaxLength="1" sap:label="Cost acc. var."/>
+                <Property Name="HRKOSTL" Type="Edm.String" MaxLength="10" sap:label="Cost center"/>
+                <Property Name="HRLSTAR" Type="Edm.String" MaxLength="6" sap:label="Activity type"/>
+                <Property Name="HRFUND" Type="Edm.String" MaxLength="10" sap:label="Master Fund"/>
+                <Property Name="HRFUNC_AREA" Type="Edm.String" MaxLength="16" sap:label="MasterFunc.Area"/>
+                <Property Name="HRGRANT_NBR" Type="Edm.String" MaxLength="20" sap:label="Master Grant"/>
+                <Property Name="BUKRS" Type="Edm.String" MaxLength="4" sap:label="Company Code"/>
+                <Property Name="HRBUDGET_PD" Type="Edm.String" MaxLength="10"/>
+                <Property Name="ERSDA" Type="Edm.DateTime" Precision="0" sap:label="Date"/>
+                <Property Name="ERSTM" Type="Edm.String" MaxLength="6" sap:label="Time"/>
+                <Property Name="ERNAM" Type="Edm.String" MaxLength="12" sap:label="Created by"/>
+                <Property Name="LAEDA" Type="Edm.DateTime" Precision="0" sap:label="Date"/>
+                <Property Name="LAETM" Type="Edm.String" MaxLength="6" sap:label="Time"/>
+                <Property Name="AENAM" Type="Edm.String" MaxLength="12" sap:label="Changed by"/>
+                <Property Name="APNAM" Type="Edm.String" MaxLength="12" sap:label="Approved by"/>
+                <Property Name="APDAT" Type="Edm.DateTime" Precision="0" sap:label="Date"/>
+                <Property Name="LOGSYS" Type="Edm.String" MaxLength="10" sap:label="Logical System"/>
+                <Property Name="STATUS" Type="Edm.String" MaxLength="2" sap:label="Process status"/>
+                <Property Name="REFCOUNTER" Type="Edm.String" MaxLength="12" sap:label="Ref. counter"/>
+                <Property Name="REASON" Type="Edm.String" MaxLength="4" sap:label="Rejection reas."/>
+                <Property Name="BELNR" Type="Edm.String" MaxLength="10" sap:label="Document no."/>
+                <Property Name="TASKCOUNTER" Type="Edm.String" MaxLength="10" sap:label="Task number"/>
+                <Property Name="BEDID" Type="Edm.String" MaxLength="12" sap:label="ID"/>
+            </ComplexType>
+            <EntityContainer Name="HCM_TIMESHEET_MAN_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="TimeDataList" EntityType="HCM_TIMESHEET_MAN_SRV.TimeData" sap:content-version="1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+                <EntitySet Name="TimeEntries" EntityType="HCM_TIMESHEET_MAN_SRV.TimeEntry" sap:content-version="1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+                <EntitySet Name="Summaries" EntityType="HCM_TIMESHEET_MAN_SRV.Summary" sap:content-version="1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+                <EntitySet Name="InitialInfos" EntityType="HCM_TIMESHEET_MAN_SRV.InitialInfo" sap:content-version="1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+                <EntitySet Name="WorkListCollection" EntityType="HCM_TIMESHEET_MAN_SRV.WorkList" sap:content-version="1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+                <EntitySet Name="ProfileFields" EntityType="HCM_TIMESHEET_MAN_SRV.ProfileField" sap:content-version="1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+                <EntitySet Name="ValueHelpList" EntityType="HCM_TIMESHEET_MAN_SRV.ValueHelp" sap:content-version="1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+                <EntitySet Name="Favorites" EntityType="HCM_TIMESHEET_MAN_SRV.Favorite" sap:content-version="1" sap:pageable="false" sap:addressable="false"/>
+                <EntitySet Name="WorkCalendars" EntityType="HCM_TIMESHEET_MAN_SRV.WorkCalendar" sap:content-version="1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+                <EntitySet Name="ConcurrentEmploymentSet" EntityType="HCM_TIMESHEET_MAN_SRV.ConcurrentEmployment" sap:content-version="1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+                <FunctionImport Name="Summary" ReturnType="HCM_TIMESHEET_MAN_SRV.Summary" EntitySet="Summaries" m:HttpMethod="GET" sap:label="Timesheet Summary"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="https://gwaas-a55058c97.hana.ondemand.com:443/odata/SAP/HCM_TIMESHEET_MAN_SRV;v=1/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="https://gwaas-a55058c97.hana.ondemand.com:443/odata/SAP/HCM_TIMESHEET_MAN_SRV;v=1/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

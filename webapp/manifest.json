@@ -7,7 +7,18 @@
 		"applicationVersion": {
 			"version": "1.0"
 		},
-		"title": "{{title}}"
+		"title": "{{title}}",
+		"ach": "PA-FIO-TS",
+		"dataSources": {
+			"HCM_TIMESHEET_MAN_SRV": {
+				"uri": "/SAP_Gateway/odata/SAP/HCM_TIMESHEET_MAN_SRV;v=1/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/HCM_TIMESHEET_MAN_SRV/metadata.xml"
+				}
+			}
+		}
 	},
 	"sap.ui": {
 		"_version": "1.1.0",
@@ -37,6 +48,19 @@
 		"contentDensities": {
 			"compact": true,
 			"cozy": true
+		},
+		"models": {
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "HCM_TIMESHEET_MAN_SRV",
+				"preload": true
+			}
 		}
+		
 	}
 }

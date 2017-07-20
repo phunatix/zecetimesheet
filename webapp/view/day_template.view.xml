@@ -1,0 +1,98 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="hcm.mytimesheet.zecetimesheet.controller.day_template">
+    <m:Page showHeader="true" title="Tagestemplate" showFooter="true" showNavButton="false">
+        <m:content>
+            <m:FeedInput showIcon="true" icon="sap-icon://calendar" placeholder="Hier kommt der Templatename hinein" enabled="true" visible="true" maxLength="0" buttonTooltip=""/>
+            <form:SimpleForm minWidth="-1" maxContainerCols="5" layout="GridLayout" editable="true" visible="true">
+                <form:content>
+                    <m:Label text="WBS" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+                    <m:Input value="LAUDIS Invest (PSP+NR)" type="Text" description="PSP Element" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" id="myWBSNo"/>
+                    <m:Label text="Time Amount" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+                    <m:Input value="8" placeholder="" type="Text" description="Zeiteinheiten" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" id="myTimeAmount"/>
+                </form:content>
+                <form:title>
+                    <core:Title text="Mein Template" level="Auto" icon="sap-icon://home"/>
+                </form:title>
+            </form:SimpleForm>
+            <m:List mode="SingleSelectMaster" width="100%" headerText="Header" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" id="dayTemplateList" itemPress="selDTrow">
+                <m:infoToolbar>
+                    <m:Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <m:content>
+                            <m:Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+                        </m:content>
+                    </m:Toolbar>
+                </m:infoToolbar>
+                <m:headerToolbar>
+                    <m:Toolbar visible="false" enabled="false" width="" design="Solid">
+                        <m:content>
+                            <m:SearchField placeholder="Search" showSearchButton="true" visible="true" width="100%"/>
+                        </m:content>
+                    </m:Toolbar>
+                </m:headerToolbar>
+                <m:items>
+                    <m:ObjectListItem id="objListItem1" intro="" title="Laudis Invest" number="1,000" numberUnit="ZE" numberState="None" type="Active" selected="true" showMarkers="false">
+                        <m:attributes>
+                            <m:ObjectAttribute text="PSPNUMMER 012183721638" active="false"/>
+                        </m:attributes>
+                        <m:firstStatus>
+                            <m:ObjectStatus text="aktiv" state="None"/>
+                        </m:firstStatus>
+                        <m:secondStatus/>
+                    </m:ObjectListItem>
+                    <m:ObjectListItem id="objListItem2" intro="" title="Laudis Invest" number="1,000" numberUnit="ZE" numberState="None" type="Active" selected="true" showMarkers="false">
+                        <m:attributes>
+                            <m:ObjectAttribute text="PSPNUMMER 012183721638" active="false"/>
+                        </m:attributes>
+                        <m:firstStatus>
+                            <m:ObjectStatus text="aktiv" state="None"/>
+                        </m:firstStatus>
+                        <m:secondStatus/>
+                    </m:ObjectListItem>
+                    <m:ObjectListItem id="objListItem3" intro="" title="Bauprojekt Erweiterung AEZ" number="3,000" numberUnit="ZE" numberState="None" type="Active" selected="false" showMarkers="false">
+                        <m:attributes>
+                            <m:ObjectAttribute text="PSPNUMMER B1128762" active="false"/>
+                        </m:attributes>
+                        <m:firstStatus>
+                            <m:ObjectStatus text="aktiv" state="None"/>
+                        </m:firstStatus>
+                        <m:secondStatus/>
+                    </m:ObjectListItem>
+                    <m:ObjectListItem intro="" title="Laudis Invest" number="1,000" numberUnit="ZE" numberState="None" type="Active" selected="true" showMarkers="false">
+                        <m:attributes>
+                            <m:ObjectAttribute text="PSPNUMMER 012183721638" active="false"/>
+                        </m:attributes>
+                        <m:firstStatus>
+                            <m:ObjectStatus text="aktiv" state="None"/>
+                        </m:firstStatus>
+                        <m:secondStatus/>
+                    </m:ObjectListItem>
+                    <m:ObjectListItem id="objListItem4" intro="" title="Bauprojekt Erweiterung AEZ" number="2,000" numberUnit="ZE" numberState="None" type="Active" selected="false" showMarkers="false">
+                        <m:attributes>
+                            <m:ObjectAttribute text="PSPNUMMER B1128762" active="false"/>
+                        </m:attributes>
+                        <m:firstStatus>
+                            <m:ObjectStatus text="aktiv" state="None"/>
+                        </m:firstStatus>
+                        <m:secondStatus/>
+                    </m:ObjectListItem>
+                </m:items>
+            </m:List>
+        </m:content>
+        <m:footer>
+            <m:Bar design="Auto">
+                <m:contentLeft>
+                    <m:Button text="Validate" type="Default" icon="sap-icon://sys-enter-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress17"/>
+                </m:contentLeft>
+                <m:contentMiddle/>
+                <m:contentRight>
+                    <m:Button text="Add" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="addDayTemplateRow" id="addRowBtn"/>
+                    <m:Button text="Remove" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" id="delRowBtn" tap="delDayTemplateRow"/>
+                    <m:Button text="Cancel" type="Default" icon="sap-icon://sys-cancel-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress19"/>
+                    <m:Button text="Save" type="Default" icon="sap-icon://save" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                </m:contentRight>
+            </m:Bar>
+        </m:footer>
+        <m:headerContent/>
+        <m:subHeader/>
+        <m:customHeader/>
+    </m:Page>
+</mvc:View>
